@@ -2,6 +2,7 @@ import React from "react";
 import ProgressBar from "./app/components/common/progressBar";
 import "bootstrap/dist/css/bootstrap.css";
 import BadgeRole from "./app/components/common/badgeRole";
+import Button from "../src/app/components/common/button"
 import api from "./app/api/user.api"
 
 function TestPage() {
@@ -24,6 +25,7 @@ function TestPage() {
             </div>
             <div className="mb-5">
                 <BadgeRole role={currentMember.role}/>
+                <Button name="Button"/>
             </div>
         </div>
     </>
