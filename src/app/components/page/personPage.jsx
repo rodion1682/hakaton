@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, {useEffect, useState} from "react";
+// import PropTypes from "prop-types";
 import API from "../../api/user.api";
 import Loading from "../common/loading";
+import ProgressBar from "../common/progressBar";
 
 const PersonPage = ({}) => {
-    //userId
     const [user, setUser] = useState();
+    const localStorageTechnologies = localStorage.getItem("technologies");
+    const technologies = JSON.parse(localStorageTechnologies);
 
     API.fetchAll().then((users) => {
         setUser(users[0]);
     });
+    const handleFavorire = () => {
+        console.log("favorite");
+    }
 
     if (user) {
         return (
@@ -27,7 +32,7 @@ const PersonPage = ({}) => {
                                 >
                                     <div
                                         className="ms-4 mt-5 d-flex flex-column"
-                                        style={{ width: "150px" }}
+                                        style={{width: "150px"}}
                                     >
                                         <img
                                             src={user.image}
@@ -42,14 +47,15 @@ const PersonPage = ({}) => {
                                             type="button"
                                             className="btn btn-outline-dark"
                                             data-mdb-ripple-color="dark"
-                                            style={{ zIndex: 1 }}
+                                            style={{zIndex: 1}}
+                                            onClick={handleFavorire}
                                         >
                                             Add to favorite
                                         </button>
                                     </div>
                                     <div
                                         className="ms-3"
-                                        style={{ marginTop: "130px" }}
+                                        style={{marginTop: "130px"}}
                                     >
                                         <h5>
                                             {user.name} {user.surname}
@@ -59,7 +65,7 @@ const PersonPage = ({}) => {
                                 </div>
                                 <div
                                     className="p-4 text-black"
-                                    style={{ backgroundColor: "#f8f9fa" }}
+                                    style={{backgroundColor: "#f8f9fa"}}
                                 >
                                     <div className="d-flex justify-content-end text-center py-1">
                                         <button className="btn btn-light">
@@ -91,7 +97,7 @@ const PersonPage = ({}) => {
                                     </div>
                                     <div className="d-flex justify-content-between align-items-center mb-4">
                                         <p className="lead fw-normal mb-0">
-                                            Recent photos
+                                            Technologies
                                         </p>
                                         <p className="mb-0">
                                             <a href="#!" className="text-muted">
@@ -99,38 +105,9 @@ const PersonPage = ({}) => {
                                             </a>
                                         </p>
                                     </div>
-                                    <div className="row g-2">
-                                        <div className="col mb-2">
-                                            <img
-                                                src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-                                                alt=""
-                                                className="w-100 rounded-3"
-                                            />
-                                        </div>
-                                        <div className="col mb-2">
-                                            <img
-                                                src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-                                                alt=""
-                                                className="w-100 rounded-3"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="row g-2">
-                                        <div className="col">
-                                            <img
-                                                src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-                                                alt=""
-                                                className="w-100 rounded-3"
-                                            />
-                                        </div>
-                                        <div className="col">
-                                            <img
-                                                src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-                                                alt=""
-                                                className="w-100 rounded-3"
-                                            />
-                                        </div>
-                                    </div>
+                                    {Object.values(technologies).map(tech =>
+                                        <ProgressBar key={tech.id} currentMember={user} technology={tech}/>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -139,7 +116,7 @@ const PersonPage = ({}) => {
             </section>
         );
     } else {
-        return <Loading />;
+        return <Loading/>;
     }
 };
 //PersonPage.propTypes = {

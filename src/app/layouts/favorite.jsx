@@ -1,33 +1,45 @@
-import React, { useState } from "react";
-import user from "../api/user.api";
+import React, {useEffect, useState} from "react";
+import UserAvatar from "../components/ui/userAvatar";
+import UserCardInfo from "../components/ui/userCardInfo";
+import Loading from "../components/common/loading";
+import userApi from "../api/user.api";
 
 const Favorite = () => {
-    const firstUserId = 1;
-
-    const [users, setUsers] = useState([]);
-    user.getById(firstUserId).then((user) => {
-        setUsers(user);
-    });
-    console.log(users);
-    return (
-        <div>
-            <div className="d-flex align-items-start pb-5">
-                <div className="d-flex flex-grow-1 me-5">
-                    <div className="me-4">
-                        <img
-                            className="img-fluid"
-                            src={users.image}
-                            alt="image"
-                        />
+    const [users, setUsers] = useState();
+    useEffect(() => {
+        userApi.fetchAll().then((data) => setUsers(data));
+    }, [])
+    const handleClick = () => {
+        console.log("click");
+    };
+    if (users) {
+        const favoriteUsers = users.filter(user => user.favorite === true);
+        return (
+            <div>
+                {favoriteUsers.map((user) => (
+                    <div key={user.id}>
+                        <div className="container w-75 mt-3 shadow-sm p-3 mb-5 bg-light rounded position-relative">
+                            <button
+                                className="position-absolute top-0 end-0 btn"
+                                onClick={handleClick}
+                            >
+                                <i className="bi bi-info-square"></i>
+                            </button>
+                            <div className="row gutters-sm">
+                                <div className="col-md-4 mb-3">
+                                    <UserAvatar user={user}/>
+                                </div>
+                                <div className="col-md-8">
+                                    <UserCardInfo user={user}/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        {users.name} {users.surname}
-                    </div>
-                </div>
-                <button>button delete</button>
+                ))}
             </div>
-        </div>
-    );
+        );
+    }
+    return <Loading/>
 };
 
 export default Favorite;

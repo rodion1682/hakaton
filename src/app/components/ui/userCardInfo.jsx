@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import BadgeRole from "../common/badgeRole";
 
 const UserCardInfo = ({ user }) => {
     return (
@@ -8,7 +9,7 @@ const UserCardInfo = ({ user }) => {
                 <h3 className="text-uppercase">
                     {user.name} {user.surname}
                 </h3>
-                <h6>Роль в каманде: {user.role}</h6>
+                <BadgeRole role={user.role}/>
                 <p className="fst-italic"> {user.about}</p>
             </div>
         </div>

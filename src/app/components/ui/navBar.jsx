@@ -13,7 +13,7 @@ const NavBar = () => {
                     </li>
                     <li>
                         <Link className="nav-link" to="/favorite">
-                            Features <span>0</span>
+                            Favorites <span>0</span>
                         </Link>
                     </li>
                 </ul>

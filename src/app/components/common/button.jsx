@@ -7,7 +7,7 @@ const Button = ({ color, calledFunction, name, type }) => {
         <div>
             <button
                 type="button"
-                className={`btn btn-${color}${buttonStyle}`}
+                className={`btn btn-outline-${color}${buttonStyle}`}
                 onClick={calledFunction}
             >
                 {name}
