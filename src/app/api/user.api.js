@@ -1,4 +1,4 @@
-const members = [
+const users = [
     {
         id: 0,
         name: "Name",
@@ -12,9 +12,10 @@ const members = [
             "P9O6I4U3Y2": "10",
             "7T6R5E4W3Q": "20"
         },
-        role: "danger",
+        role: "info",
         image: "https://www.w3schools.com/howto/img_avatar.png",
-        about: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?"
+        about: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
+        favorite: true
     },
     {
         id: 1,
@@ -29,9 +30,10 @@ const members = [
             "P9O6I4U3Y2": "10",
             "7T6R5E4W3Q": "20"
         },
-        role: "primary",
+        role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
-        about: "1 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?"
+        about: "1 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
+        favorite: false
     },
     {
         id: 2,
@@ -46,9 +48,10 @@ const members = [
             "P9O6I4U3Y2": "10",
             "7T6R5E4W3Q": "20"
         },
-        role: "primary",
+        role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
-        about: "2 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?"
+        about: "2 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
+        favorite: false
     },
     {
         id: 3,
@@ -63,9 +66,10 @@ const members = [
             "P9O6I4U3Y2": "10",
             "7T6R5E4W3Q": "20"
         },
-        role: "primary",
+        role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
-        about: "3 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?"
+        about: "3 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
+        favorite: false
     },
     {
         id: 4,
@@ -80,9 +84,10 @@ const members = [
             "P9O6I4U3Y2": "10",
             "7T6R5E4W3Q": "20"
         },
-        role: "primary",
+        role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
-        about: "4 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?"
+        about: "4 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
+        favorite: true
     }
 ];
 
@@ -119,15 +124,40 @@ const technologies = [
     },
 ];
 
-if (!localStorage.getItem("members")) {
-    localStorage.setItem("members", JSON.stringify(members));
+if (!localStorage.getItem("users")) {
+    localStorage.setItem("users", JSON.stringify(users));
 }
 
 if (!localStorage.getItem("technologies")) {
     localStorage.setItem("technologies", JSON.stringify(technologies));
 }
 
+const fetchAll = () =>
+    new Promise((resolve) => {
+        window.setTimeout(function () {
+            resolve(JSON.parse(localStorage.getItem("users")));
+        }, 2000);
+    });
+
+//const getById = (id) =>
+//    new Promise((resolve) => {
+//        window.setTimeout(function () {
+//            resolve(
+//                JSON.parse(localStorage.getItem("users")).find(
+//                    (user) => user._id === id
+//                )
+//            );
+//        }, 1000);
+//    });
+
+const getById = (id) =>
+    new Promise((resolve) => {
+        window.setTimeout(function () {
+            resolve(users.find((user) => user.id === id));
+        }, 1000);
+    });
+
 export default {
-    members,
-    technologies
+    fetchAll,
+    getById
 };
