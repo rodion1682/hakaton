@@ -10,10 +10,11 @@ function App() {
         <div className="App">
             <NavBar />
             <Switch>
-                <Route path="/" exact component={Main} />
-                <Route path="/favorite" component={Favorite} />
-                <Route path="/memberPage" component={MemberPage} />
                 <Route path="/memberPage/:memberId" component={MemberPage} />
+                <Route path="/favorite" component={Favorite} />
+                <Route path="/" exact component={Main} />
+                {/*<Route path="/memberPage" component={MemberPage} />*/}
+
                 <Redirect to="/" />
             </Switch>
         </div>
