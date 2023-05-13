@@ -1,24 +1,31 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 // import PropTypes from "prop-types";
 import API from "../../api/user.api";
 import Loading from "../common/loading";
 import ProgressBar from "../common/progressBar";
+import {useParams} from "react-router-dom";
 
-const PersonPage = ({}) => {
+const PersonPage = () => {
+    const { memberId } = useParams();
     const [user, setUser] = useState();
     const localStorageTechnologies = localStorage.getItem("technologies");
     const technologies = JSON.parse(localStorageTechnologies);
-
     API.fetchAll().then((users) => {
-        setUser(users[0]);
+        setUser(users[memberId]);
     });
-    const handleFavorire = () => {
-        console.log("favorite");
-    }
+    const handleFavorite = () => {
+        // const users = JSON.parse(localStorage.getItem("users"));
+        // const updatedUsers = users.map((u) =>
+        //     u._id === memberId ? { ...u, favorite: true } : u
+        // );
+        // localStorage.setItem("users", JSON.stringify(updatedUsers));
+        // setUser((prevUser) => ({ ...prevUser, favorite: true }));
+        console.log(memberId);
+    };
 
     if (user) {
         return (
-            <section className="h-100 gradient-custom-2">
+            <section className="h-100">
                 <div className="container py-5 h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col col-lg-9 col-xl-7">
@@ -48,7 +55,7 @@ const PersonPage = ({}) => {
                                             className="btn btn-outline-dark"
                                             data-mdb-ripple-color="dark"
                                             style={{zIndex: 1}}
-                                            onClick={handleFavorire}
+                                            onClick={handleFavorite}
                                         >
                                             Add to favorite
                                         </button>

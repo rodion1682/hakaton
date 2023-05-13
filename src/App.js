@@ -3,7 +3,6 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Favorite from "./app/layouts/favorite";
 import Main from "./app/layouts/main";
 import MemberPage from "./app/components/page/personPage";
-import "./style.css";
 
 function App() {
     return (

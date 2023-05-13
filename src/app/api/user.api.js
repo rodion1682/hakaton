@@ -157,7 +157,17 @@ const getById = (id) =>
         }, 1000);
     });
 
+const update = (id, data) =>
+    new Promise((resolve) => {
+        const users = JSON.parse(localStorage.getItem("users"));
+        const userIndex = users.findIndex((u) => u.id === id);
+        users[userIndex] = { ...users[userIndex], ...data };
+        localStorage.setItem("users", JSON.stringify(users));
+        resolve(users[userIndex]);
+    });
+
 export default {
     fetchAll,
-    getById
+    getById,
+    update
 };

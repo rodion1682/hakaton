@@ -9,13 +9,13 @@ const NavBar = () => {
             <div className="container-fluid">
                 <ul className="navbar-nav">
                     <li>
-                        <Link className="nav-link active" to="/">
+                        <Link className="nav-link" to="/">
                             Home
                         </Link>
                     </li>
                     <li>
                         <Link className="nav-link" to="/favorite">
-                            Favorites <span>{favoriteUsersCount}</span>
+                            Favorites: <span>{favoriteUsersCount}</span>
                         </Link>
                     </li>
                 </ul>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import userApi from "../api/user.api";
 import Footer from "../components/ui/footer";
 import Loading from "../components/common/loading";
@@ -20,7 +20,7 @@ const Main = () => {
 
     return (
         <>
-            <div className="mb-2">
+            <div className="mb-2 p-1 bg-light">
                 <h1 className="text-center text-uppercase">
                     Hackathon React Team 3
                 </h1>
@@ -52,9 +52,9 @@ const Main = () => {
                     </div>
                 ))
             ) : (
-                <Loading />
+                <Loading/>
             )}
-            <Footer />
+            <Footer/>
         </>
     );
 };

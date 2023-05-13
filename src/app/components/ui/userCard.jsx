@@ -7,9 +7,9 @@ import { useHistory } from "react-router-dom";
 
 const UserCard = ({user}) => {
     const history = useHistory();
-    const handleClick = (userId) => () => {
+    const handleClick = (id) => () => {
         console.log("Работает!");
-        history.push(`/memberPage/${userId}`);
+        history.push(`/memberPage/${id}`);
     };
     return <>
         <Button calledFunction={handleClick(user.id)} name={"Show more"} buttonStyle="position-absolute m-3 top-0 end-0"/>
