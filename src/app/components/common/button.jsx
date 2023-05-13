@@ -3,18 +3,10 @@ import PropTypes from "prop-types";
 
 const Button = ({ color, calledFunction, name, type }) => {
     const buttonStyle = type === "rounded" ? " rounded-pill" : "";
-    return (
-        <div>
-            <button
-                type="button"
-                className={`btn btn-${color}${buttonStyle}`}
-                onClick={calledFunction}
-            >
-                {name}
-            </button>
-        </div>
-    );
-};
+    return <div>
+        <button type="button" className={`btn btn-${color}${buttonStyle}`} onClick={calledFunction}>{name}</button>
+    </div>
+}
 
 Button.defaultProps = {
     color: "primary",
@@ -26,6 +18,6 @@ Button.propTypes = {
     calledFunction: PropTypes.func,
     name: PropTypes.string.isRequired,
     type: PropTypes.string
-};
+}
 
 export default Button;
