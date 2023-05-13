@@ -1,7 +1,10 @@
+import React from "react";
+import TestPage from "./testPage";
+
 function App() {
     return (
         <div className="App">
-            <div>app</div>
+            <TestPage />
         </div>
     );
 }
