@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
     return (
-        <nav className="navbar navbar-expand-lg bg-light">
+        <nav className="navbar navbar-expand-lg bg-dark">
             <div className="container-fluid">
                 <ul className="navbar-nav">
                     <li>
-                        <Link className="nav-link active" to="/">
+                        <Link className="nav-link active text-white" to="/">
                             Home
                         </Link>
                     </li>
                     <li>
-                        <Link className="nav-link" to="/favorite">
+                        <Link className="nav-link text-white" to="/favorite">
                             Favorites <span>0</span>
                         </Link>
                     </li>

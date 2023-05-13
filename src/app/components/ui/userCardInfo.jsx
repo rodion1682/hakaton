@@ -9,7 +9,7 @@ const UserCardInfo = ({ user }) => {
                 <h3 className="text-uppercase">
                     {user.name} {user.surname}
                 </h3>
-                <BadgeRole role={user.role}/>
+                <BadgeRole role={user.role} />
                 <p className="fst-italic"> {user.about}</p>
             </div>
         </div>
