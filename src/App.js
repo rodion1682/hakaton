@@ -1,7 +1,10 @@
+import PersonPage from "./app/components/page/personPage";
+import "./style.css";
+
 function App() {
     return (
         <div className="App">
-            <div>app</div>
+            <PersonPage userId={0} />
         </div>
     );
 }
