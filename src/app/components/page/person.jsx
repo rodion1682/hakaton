@@ -39,9 +39,17 @@ const Person = () => {
         <>
             {personId ? (
                 edit ? (
-                    <EditPage personId={personId} handleFile={handleFile} />
+                    <EditPage
+                        key="edit"
+                        personId={personId}
+                        handleFile={handleFile}
+                    />
                 ) : (
-                    <PersonPage personId={personId} backImg={backImg} />
+                    <PersonPage
+                        key="person"
+                        personId={personId}
+                        backImg={backImg}
+                    />
                 )
             ) : (
                 <Loading />
