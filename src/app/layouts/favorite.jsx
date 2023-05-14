@@ -1,41 +1,54 @@
 import React, {useEffect, useState} from "react";
-import UserAvatar from "../components/ui/userAvatar";
-import UserCardInfo from "../components/ui/userCardInfo";
 import Loading from "../components/common/loading";
-import userApi from "../api/user.api";
+import UserCard from "../components/ui/userCard";
+import Button from "../components/common/button";
+import API from "../api/user.api";
 
 const Favorite = () => {
     const [users, setUsers] = useState();
+    const [favoriteUsers, setFavoriteUsers] = useState();
+
     useEffect(() => {
-        userApi.fetchAll().then((data) => setUsers(data));
-    }, [])
-    const handleClick = () => {
-        console.log("click");
-    };
-    if (users) {
-        const favoriteUsers = users.filter(user => user.favorite === true);
+        API.fetchAll().then((data) => {
+            setUsers(data);
+            setFavoriteUsers(data.filter((user) => user.favorite === true));
+        });
+    }, []);
+
+    if (favoriteUsers) {
+        const handleDelete = (id) => () => {
+            const updatedUsers = [...users];
+            const userIndex = updatedUsers.findIndex((user) => user.id === id);
+            if (userIndex !== -1) {
+                updatedUsers[userIndex] = { ...updatedUsers[userIndex], favorite: false };
+                API.update(id, updatedUsers[userIndex]).then(() => {
+                    setUsers(updatedUsers);
+                    setFavoriteUsers(updatedUsers.filter((user) => user.favorite === true));
+                });
+            }
+        }
+
         return (
             <div>
-                {favoriteUsers.map((user) => (
-                    <div key={user.id}>
-                        <div className="container w-75 mt-3 shadow-sm p-3 mb-5 bg-light rounded position-relative">
-                            <button
-                                className="position-absolute top-0 end-0 btn"
-                                onClick={handleClick}
-                            >
-                                <i className="bi bi-info-square"></i>
-                            </button>
-                            <div className="row gutters-sm">
-                                <div className="col-md-4 mb-3">
-                                    <UserAvatar user={user}/>
-                                </div>
-                                <div className="col-md-8">
-                                    <UserCardInfo user={user}/>
-                                </div>
+                {favoriteUsers.length > 0 ? (
+                    favoriteUsers.map((user) => (
+                        <div key={user.id}>
+                            <div className="container w-75 mt-3 shadow-sm p-3 mb-5 bg-light rounded position-relative">
+                                <UserCard user={user} />
+                                <Button
+                                    color={"danger"}
+                                    calledFunction={handleDelete(user.id)}
+                                    name={"Delete"}
+                                    buttonStyle="position-absolute bottom-0 end-0 m-3"
+                                />
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                ) : (
+                    <p>You haven't favorited any users yet!</p>
+                )}
+                {users.length > 0 && favoriteUsers.length === 0 && <p>No favorite users found.</p>}
+                {!users.length && <Loading />}
             </div>
         );
     }
