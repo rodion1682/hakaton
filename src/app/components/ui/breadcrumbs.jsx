@@ -6,9 +6,10 @@ const Breadcrumbs = () => {
 
     const crumbs = location.pathname.split("/").filter((x) => x !== "");
 
+    let personIndex = null;
     if (crumbs.includes("person")) {
         const index = crumbs.findIndex((x) => x === "person");
-        crumbs.splice(index + 1);
+        personIndex = crumbs.splice(index + 1, index + 1);
     }
 
     //  style={{ "--bs-breadcrumb-divider": ">" }}
@@ -25,7 +26,12 @@ const Breadcrumbs = () => {
                     </li>
                 )}
                 {crumbs.map((name, index) => {
-                    const routeTo = `/${crumbs.slice(0, index + 1).join("/")}`;
+                    const routeTo =
+                        name === "person"
+                            ? `/${crumbs
+                                  .slice(0, index + 1)
+                                  .join("/")}/${personIndex}`
+                            : `/${crumbs.slice(0, index + 1).join("/")}`;
                     const isLast = index === crumbs.length - 1;
 
                     const linkNameReform = (name) => {
@@ -33,6 +39,8 @@ const Breadcrumbs = () => {
                             return "Favorites";
                         } else if (name === "person") {
                             return "Person page";
+                        } else if (name === "edit") {
+                            return "Edit page";
                         } else {
                             return name;
                         }
