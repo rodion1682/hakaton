@@ -1,23 +1,27 @@
 import React from "react";
-import { Link, useLocation, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Breadcrumbs = () => {
     const location = useLocation();
-    const history = useHistory();
 
     const crumbs = location.pathname.split("/").filter((x) => x !== "");
 
+    if (crumbs.includes("person")) {
+        const index = crumbs.findIndex((x) => x === "person");
+        crumbs.splice(index + 1);
+    }
+
     //  style={{ "--bs-breadcrumb-divider": ">" }}
     return (
-        <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
+        <nav className="ms-4 mt-2" aria-label="breadcrumb">
+            <ol className="breadcrumb" aria-label="breadcrumb">
                 {crumbs.length > 0 ? (
-                    <li className="breadcrumb-item">
-                        <Link onClick={() => history.push("/")}>Главная</Link>
+                    <li className="breadcrumb-item text-white">
+                        <Link to="/">Home</Link>
                     </li>
                 ) : (
-                    <li className="breadcrumb-item">
-                        <span>Главная</span>
+                    <li className="breadcrumb-item ">
+                        <span>Home</span>
                     </li>
                 )}
                 {crumbs.map((name, index) => {
@@ -26,23 +30,21 @@ const Breadcrumbs = () => {
 
                     const linkNameReform = (name) => {
                         if (name === "favorite") {
-                            return "Избраное";
-                        } else if (name === "memberPage") {
-                            return "Страница участника";
+                            return "Favorites";
+                        } else if (name === "person") {
+                            return "Person page";
                         } else {
                             return name;
                         }
                     };
 
                     return isLast ? (
-                        <li className="breadcrumb-item" key={name}>
+                        <li className="breadcrumb-item text-white" key={name}>
                             <span>{linkNameReform(name)}</span>
                         </li>
                     ) : (
-                        <li className="breadcrumb-item" key={name}>
-                            <Link onClick={() => history.push(routeTo)}>
-                                {linkNameReform(name)}
-                            </Link>
+                        <li className="breadcrumb-item text-white" key={name}>
+                            <Link to={routeTo}>{linkNameReform(name)}</Link>
                         </li>
                     );
                 })}

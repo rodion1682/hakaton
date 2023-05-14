@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 // import PropTypes from "prop-types";
 import API from "../../api/user.api";
 import Loading from "../common/loading";
 import ProgressBar from "../common/progressBar";
-import {useParams} from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
-const PersonPage = () => {
-    const { memberId } = useParams();
-    const id = Number(memberId);
+const PersonPage = ({ backImg }) => {
+    const { personId } = useParams();
+    const id = Number(personId);
     const [user, setUser] = useState();
     const localStorageTechnologies = localStorage.getItem("technologies");
     const technologies = JSON.parse(localStorageTechnologies);
@@ -18,8 +18,13 @@ const PersonPage = () => {
     }, []);
 
     const handleFavorite = () => {
-        const updatedUser = {...user, favorite: true}
+        const updatedUser = { ...user, favorite: true };
         API.update(id, updatedUser).then((upUser) => setUser(upUser));
+    };
+
+    const history = useHistory();
+    const handleClick = () => {
+        history.push(history.location.pathname + "/edit");
     };
 
     if (user) {
@@ -36,9 +41,35 @@ const PersonPage = () => {
                                         height: "200px"
                                     }}
                                 >
+                                    {backImg && (
+                                        <div
+                                            className="img-fluid position-absolute"
+                                            style={{
+                                                height: "200px",
+                                                width: "100%"
+                                            }}
+                                        >
+                                            <img
+                                                src={backImg}
+                                                alt="nothing"
+                                                className=""
+                                                style={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover"
+                                                }}
+                                            ></img>
+                                        </div>
+                                    )}
+                                    <button
+                                        className="position-absolute top-0 end-0 btn btn-dark btn-sm"
+                                        onClick={handleClick}
+                                    >
+                                        <i className="bi bi-gear"></i>
+                                    </button>
                                     <div
                                         className="ms-4 mt-5 d-flex flex-column"
-                                        style={{width: "150px"}}
+                                        style={{ width: "150px" }}
                                     >
                                         <img
                                             src={user.image}
@@ -53,7 +84,7 @@ const PersonPage = () => {
                                             type="button"
                                             className="btn btn-outline-dark"
                                             data-mdb-ripple-color="dark"
-                                            style={{zIndex: 1}}
+                                            style={{ zIndex: 1 }}
                                             onClick={handleFavorite}
                                         >
                                             Add to favorite
@@ -61,7 +92,7 @@ const PersonPage = () => {
                                     </div>
                                     <div
                                         className="ms-3"
-                                        style={{marginTop: "130px"}}
+                                        style={{ marginTop: "130px" }}
                                     >
                                         <h5>
                                             {user.name} {user.surname}
@@ -71,7 +102,7 @@ const PersonPage = () => {
                                 </div>
                                 <div
                                     className="p-4 text-black"
-                                    style={{backgroundColor: "#f8f9fa"}}
+                                    style={{ backgroundColor: "#f8f9fa" }}
                                 >
                                     <div className="d-flex justify-content-end text-center py-1">
                                         <button className="btn btn-light">
@@ -111,9 +142,13 @@ const PersonPage = () => {
                                             </a>
                                         </p>
                                     </div>
-                                    {Object.values(technologies).map(tech =>
-                                        <ProgressBar key={tech.id} currentMember={user} technology={tech}/>
-                                    )}
+                                    {Object.values(technologies).map((tech) => (
+                                        <ProgressBar
+                                            key={tech.id}
+                                            currentMember={user}
+                                            technology={tech}
+                                        />
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -122,7 +157,7 @@ const PersonPage = () => {
             </section>
         );
     } else {
-        return <Loading/>;
+        return <Loading />;
     }
 };
 //PersonPage.propTypes = {
