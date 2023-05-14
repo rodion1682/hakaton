@@ -15,7 +15,15 @@ const users = [
         role: "info",
         image: "https://www.w3schools.com/howto/img_avatar.png",
         about: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: false
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 1,
@@ -33,7 +41,15 @@ const users = [
         role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
         about: "1 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: false
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 2,
@@ -51,7 +67,15 @@ const users = [
         role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
         about: "2 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: false
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 3,
@@ -69,7 +93,15 @@ const users = [
         role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
         about: "3 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: false
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 4,
@@ -87,7 +119,15 @@ const users = [
         role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
         about: "4 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: false
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     }
 ];
 
@@ -136,14 +176,14 @@ const fetchAll = () =>
     new Promise((resolve) => {
         window.setTimeout(function () {
             resolve(JSON.parse(localStorage.getItem("users")));
-        }, 2000);
+        }, 500);
     });
 
 const getById = (id) =>
     new Promise((resolve) => {
         window.setTimeout(function () {
             resolve(users.find((user) => user.id === id));
-        }, 1000);
+        }, 500);
     });
 
 const update = (id, data) =>
