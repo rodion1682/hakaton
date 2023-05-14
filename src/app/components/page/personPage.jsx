@@ -4,22 +4,25 @@ import API from "../../api/user.api";
 import Loading from "../common/loading";
 import ProgressBar from "../common/progressBar";
 import { useParams, useHistory } from "react-router-dom";
+import { useUsers } from "../../hooks/useUsers";
 
 const PersonPage = ({ backImg }) => {
     const { personId } = useParams();
     const id = Number(personId);
     const [user, setUser] = useState();
+    const { addFavorite } = useUsers();
+
     const localStorageTechnologies = localStorage.getItem("technologies");
     const technologies = JSON.parse(localStorageTechnologies);
+
     useEffect(() => {
         API.fetchAll().then((users) => {
             setUser(users[id]);
         });
     }, []);
 
-    const handleFavorite = () => {
-        const updatedUser = { ...user, favorite: true };
-        API.update(id, updatedUser).then((upUser) => setUser(upUser));
+    const handleFavorite = (id) => () => {
+        addFavorite({ id });
     };
 
     const history = useHistory();
@@ -85,7 +88,7 @@ const PersonPage = ({ backImg }) => {
                                             className="btn btn-outline-dark"
                                             data-mdb-ripple-color="dark"
                                             style={{ zIndex: 1 }}
-                                            onClick={handleFavorite}
+                                            onClick={handleFavorite(id)}
                                         >
                                             Add to favorite
                                         </button>

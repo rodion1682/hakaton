@@ -49,7 +49,7 @@ const EditPage = ({ personId, handleFile }) => {
         <div className="container py-5 h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
                 <div className="col col-lg-9 col-xl-7">
-                    <form action="">
+                    <form style={{ cursor: "pointer" }}>
                         <div
                             className={classesForArea()}
                             onDragStart={handleDragStart}
