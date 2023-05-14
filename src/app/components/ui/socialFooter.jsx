@@ -6,7 +6,10 @@ const SocialFooter = ({ social }) => {
         <ul className="nav justify-content-center fs-6">
             {social &&
                 social.map((soc) => (
-                    <li className="nav-item">
+                    <li
+                        key={(Math.random() + 1).toString(36).substring(7)}
+                        className="nav-item"
+                    >
                         <a
                             className="btn"
                             target="_blank"

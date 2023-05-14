@@ -70,3 +70,10 @@ body {
 .fileArea.hover {
     border-style: dashed;
 }
+
+.carousel-indicators [data-bs-target] {
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    height: 10px !important;
+    width: 10px !important;
+    border-radius: 50%;
+}
