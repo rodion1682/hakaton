@@ -62,6 +62,7 @@ import Loading from "../components/common/loading";
 import UserCard from "../components/ui/userCard";
 import Button from "../components/common/button";
 import { useUsers } from "../hooks/useUsers";
+import SocialFooter from "../components/ui/socialFooter";
 
 const Favorite = () => {
     const { favoriteUsers, deleteFavorite } = useUsers();
@@ -82,6 +83,7 @@ const Favorite = () => {
                                     name={"Delete"}
                                     buttonStyle="position-absolute bottom-0 end-0 m-3"
                                 />
+                                <SocialFooter social={favUser.social} />
                             </div>
                         </div>
                     ))
