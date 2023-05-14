@@ -9,7 +9,7 @@ const UserCardInfo = ({ user }) => {
                 {user.name} {user.surname}
             </h3>
             <BadgeRole role={user.role} />
-            <p className="fst-italic"> {user.about}</p>
+            <p className="fst-italic mt-2"> {user.about}</p>
         </div>
     );
 };

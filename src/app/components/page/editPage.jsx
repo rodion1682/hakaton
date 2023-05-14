@@ -1,15 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { Redirect } from "react-router";
+import { useHistory } from "react-router-dom";
 
 const EditPage = ({ personId, handleFile }) => {
     const [drag, setDrag] = useState(false);
     const [file, setFile] = useState();
     const hiddenFileInput = useRef();
+    const history = useHistory();
 
     useEffect(() => {
-        console.log(file);
-    }, [file]);
+        if (file) {
+            handleFile(file);
+            history.push(`/person/${personId}`);
+        }
+    }, [file, handleFile, history, personId]);
 
     const handleDragStart = (e) => {
         e.preventDefault();
@@ -39,11 +43,6 @@ const EditPage = ({ personId, handleFile }) => {
         hiddenFileInput.current.click();
     };
     const classesForArea = () => "fileArea " + (drag ? "hover" : "");
-
-    if (file) {
-        handleFile(file);
-        return <Redirect to={`/person/${personId}`} />;
-    }
 
     return (
         <div className="container py-5 h-100">
