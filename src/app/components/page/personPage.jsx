@@ -181,6 +181,7 @@ import ProgressBar from "../common/progressBar";
 import { useParams, useHistory } from "react-router-dom";
 import { useUsers } from "../../hooks/useUsers";
 import SocialFooter from "../ui/socialFooter";
+import Slider from "../ui/slider";
 
 const PersonPage = ({ backImg }) => {
     const { personId } = useParams();
@@ -190,6 +191,7 @@ const PersonPage = ({ backImg }) => {
 
     const localStorageTechnologies = localStorage.getItem("technologies");
     const technologies = JSON.parse(localStorageTechnologies);
+    // console.log(technologies);
 
     useEffect(() => {
         API.fetchAll().then((users) => {
@@ -312,13 +314,17 @@ const PersonPage = ({ backImg }) => {
                                             Technologies
                                         </p>
                                     </div>
-                                    {Object.values(technologies).map((tech) => (
-                                        <ProgressBar
-                                            key={tech.id}
-                                            currentMember={user}
-                                            technology={tech}
-                                        />
-                                    ))}
+                                    <Slider>
+                                        {Object.values(technologies).map(
+                                            (tech) => (
+                                                <ProgressBar
+                                                    key={tech.id}
+                                                    currentMember={user}
+                                                    technology={tech}
+                                                />
+                                            )
+                                        )}
+                                    </Slider>
                                 </div>
                             </div>
                         </div>
