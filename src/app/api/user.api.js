@@ -6,10 +6,10 @@ const users = [
         age: 20,
         technologies: {
             "9D7F1B4E2C": "90",
-            A3C5E2B8F1: "90",
+            "A3C5E2B8F1": "90",
             "5G8H9J2K4L": "80",
-            M1N8B7V2C5: "70",
-            P9O6I4U3Y2: "10",
+            "M1N8B7V2C5": "70",
+            "P9O6I4U3Y2": "10",
             "7T6R5E4W3Q": "20"
         },
         role: "info",
@@ -32,10 +32,10 @@ const users = [
         age: 20,
         technologies: {
             "9D7F1B4E2C": "90",
-            A3C5E2B8F1: "90",
+            "A3C5E2B8F1": "90",
             "5G8H9J2K4L": "80",
-            M1N8B7V2C5: "70",
-            P9O6I4U3Y2: "10",
+            "M1N8B7V2C5": "70",
+            "P9O6I4U3Y2": "10",
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
@@ -58,10 +58,10 @@ const users = [
         age: 20,
         technologies: {
             "9D7F1B4E2C": "90",
-            A3C5E2B8F1: "90",
+            "A3C5E2B8F1": "90",
             "5G8H9J2K4L": "80",
-            M1N8B7V2C5: "70",
-            P9O6I4U3Y2: "10",
+            "M1N8B7V2C5": "70",
+            "P9O6I4U3Y2": "10",
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
@@ -84,10 +84,10 @@ const users = [
         age: 20,
         technologies: {
             "9D7F1B4E2C": "90",
-            A3C5E2B8F1: "90",
+            "A3C5E2B8F1": "90",
             "5G8H9J2K4L": "80",
-            M1N8B7V2C5: "70",
-            P9O6I4U3Y2: "10",
+            "M1N8B7V2C5": "70",
+            "P9O6I4U3Y2": "10",
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
@@ -110,10 +110,10 @@ const users = [
         age: 20,
         technologies: {
             "9D7F1B4E2C": "90",
-            A3C5E2B8F1: "90",
+            "A3C5E2B8F1": "90",
             "5G8H9J2K4L": "80",
-            M1N8B7V2C5: "70",
-            P9O6I4U3Y2: "10",
+            "M1N8B7V2C5": "70",
+            "P9O6I4U3Y2": "10",
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
