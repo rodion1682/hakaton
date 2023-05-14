@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 // import PropTypes from "prop-types";
 import API from "../../api/user.api";
 import Loading from "../common/loading";
@@ -7,20 +7,19 @@ import {useParams} from "react-router-dom";
 
 const PersonPage = () => {
     const { memberId } = useParams();
+    const id = Number(memberId);
     const [user, setUser] = useState();
     const localStorageTechnologies = localStorage.getItem("technologies");
     const technologies = JSON.parse(localStorageTechnologies);
-    API.fetchAll().then((users) => {
-        setUser(users[memberId]);
-    });
+    useEffect(() => {
+        API.fetchAll().then((users) => {
+            setUser(users[id]);
+        });
+    }, []);
+
     const handleFavorite = () => {
-        // const users = JSON.parse(localStorage.getItem("users"));
-        // const updatedUsers = users.map((u) =>
-        //     u._id === memberId ? { ...u, favorite: true } : u
-        // );
-        // localStorage.setItem("users", JSON.stringify(updatedUsers));
-        // setUser((prevUser) => ({ ...prevUser, favorite: true }));
-        console.log(memberId);
+        const updatedUser = {...user, favorite: true}
+        API.update(id, updatedUser).then((upUser) => setUser(upUser));
     };
 
     if (user) {
