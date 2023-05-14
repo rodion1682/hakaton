@@ -92,7 +92,11 @@ const PersonPage = ({ backImg }) => {
                                     </div>
                                     <div
                                         className="ms-3"
-                                        style={{ marginTop: "130px" }}
+                                        style={{
+                                            marginTop: "130px",
+                                            position: "relative",
+                                            textShadow: "0 5px 15px #000"
+                                        }}
                                     >
                                         <h5>
                                             {user.name} {user.surname}
