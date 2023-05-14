@@ -1,46 +1,46 @@
 import React, { useEffect, useState } from "react";
-import API from "../../api/user.api";
+import API from "../../api/person.api";
 import Loading from "../common/loading";
 import ProgressBar from "../common/progressBar";
 import { useParams, useHistory } from "react-router-dom";
-import { useUsers } from "../../hooks/useUsers";
+import { usePerson } from "../../hooks/usePerson";
 import SocialFooter from "../ui/socialFooter";
+import Slider from "../ui/slider";
+import PropTypes from "prop-types";
 
 const PersonPage = ({ backImg }) => {
     const { personId } = useParams();
     const id = Number(personId);
-    const [user, setUser] = useState();
+    const [person, setPerson] = useState();
     const [favorite, setFavorite] = useState(false);
-    const { addFavorite, deleteFavorite } = useUsers();
+    const { addFavorite, deleteFavorite } = usePerson();
     const localStorageTechnologies = localStorage.getItem("technologies");
     const technologies = JSON.parse(localStorageTechnologies);
 
     useEffect(() => {
-        API.fetchAll().then((users) => {
-            setUser(users[id]);
-            setFavorite(users[id].favorite);
+        API.fetchAll().then((persons) => {
+            setPerson(persons[id]);
+            setFavorite(persons[id].favorite);
         });
     }, []);
 
     const handleFavorite = (id, favoriteStatus) => () => {
-        console.log(favoriteStatus)
         if (!favoriteStatus) {
-            addFavorite({ id })
+            addFavorite({ id });
         } else {
-            deleteFavorite({ id })
+            deleteFavorite({ id });
         }
         setFavorite(!favoriteStatus);
-        setUser((prevUser) => ({ ...prevUser, favorite: !favoriteStatus }));
+        setPerson((prevPerson) => ({ ...prevPerson, favorite: !favoriteStatus }));
     };
 
     const history = useHistory();
     const handleClick = () => {
         history.push(history.location.pathname + "/edit");
     };
-
     const colorOfStar = favorite === true ? "-fill" : "";
 
-    if (user) {
+    if (person) {
         return (
             <section className="h-100">
                 <div className="container py-5 h-100">
@@ -85,7 +85,7 @@ const PersonPage = ({ backImg }) => {
                                         style={{ width: "150px" }}
                                     >
                                         <img
-                                            src={user.image}
+                                            src={person.image}
                                             alt="Generic placeholder"
                                             className="img-fluid img-thumbnail mt-4 mb-2"
                                             style={{
@@ -95,26 +95,31 @@ const PersonPage = ({ backImg }) => {
                                         />
                                         <button
                                             type="button"
-                                            className="btn btn-outline-dark"
+                                            className="btn btn-outline-dark d-flex justify-content-center"
                                             data-mdb-ripple-color="dark"
                                             style={{ zIndex: 1 }}
-                                            onClick={handleFavorite(id, user.favorite)}
+                                            onClick={handleFavorite(
+                                                id,
+                                                person.favorite
+                                            )}
                                         >
-                                            Add to favorite <i className={`bi bi-star${colorOfStar} text-warning`}></i>
+                                            To favorite
+                                            <i
+                                                className={`bi bi-star${colorOfStar} text-warning ms-1`}
+                                            ></i>
                                         </button>
                                     </div>
                                     <div
                                         className="ms-3"
                                         style={{
-                                            marginTop: "130px",
+                                            marginTop: "160px",
                                             position: "relative",
                                             textShadow: "0 5px 15px #000"
                                         }}
                                     >
-                                        <h5>
-                                            {user.name} {user.surname}
-                                        </h5>
-                                        <p>New York</p>
+                                        <h4>
+                                            {person.name} {person.surname}
+                                        </h4>
                                     </div>
                                 </div>
                                 <div
@@ -122,13 +127,13 @@ const PersonPage = ({ backImg }) => {
                                     style={{ backgroundColor: "#f8f9fa" }}
                                 >
                                     <div className="d-flex justify-content-end text-center py-1">
-                                        <SocialFooter social={user.social} />
+                                        <SocialFooter social={person.social} />
                                     </div>
                                 </div>
                                 <div className="card-body p-4 text-black">
                                     <div className="mb-5">
                                         <p className="lead fw-normal mb-1">
-                                            О себе
+                                            About me
                                         </p>
                                         <div
                                             className="p-4"
@@ -137,7 +142,7 @@ const PersonPage = ({ backImg }) => {
                                             }}
                                         >
                                             <p className="font-italic mb-1">
-                                                {user.about}
+                                                {person.about}
                                             </p>
                                         </div>
                                     </div>
@@ -146,13 +151,17 @@ const PersonPage = ({ backImg }) => {
                                             Technologies
                                         </p>
                                     </div>
-                                    {Object.values(technologies).map((tech) => (
-                                        <ProgressBar
-                                            key={tech.id}
-                                            currentMember={user}
-                                            technology={tech}
-                                        />
-                                    ))}
+                                    <Slider>
+                                        {Object.values(technologies).map(
+                                            (tech) => (
+                                                <ProgressBar
+                                                    key={tech.id}
+                                                    currentMember={person}
+                                                    technology={tech}
+                                                />
+                                            )
+                                        )}
+                                    </Slider>
                                 </div>
                             </div>
                         </div>
@@ -164,5 +173,9 @@ const PersonPage = ({ backImg }) => {
         return <Loading />;
     }
 };
+
+PersonPage.propTypes = {
+    backImg: PropTypes.string
+}
 
 export default PersonPage;

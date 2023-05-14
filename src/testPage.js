@@ -3,7 +3,7 @@ import ProgressBar from "./app/components/common/progressBar";
 import "bootstrap/dist/css/bootstrap.css";
 import BadgeRole from "./app/components/common/badgeRole";
 import Button from "../src/app/components/common/button"
-import api from "./app/api/user.api"
+import api from "./app/api/person.api"
 
 function TestPage() {
     const id = 0;

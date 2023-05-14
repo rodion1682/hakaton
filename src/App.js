@@ -5,12 +5,12 @@ import Main from "./app/layouts/main";
 import Person from "./app/components/page/person";
 import Breadcrumbs from "./app/components/ui/breadcrumbs";
 import "./style.css";
-import FavoriteProvider from "./app/hooks/useUsers";
+import PersonProvider from "./app/hooks/usePerson";
 
 function App() {
     return (
         <div className="App">
-            <FavoriteProvider>
+            <PersonProvider>
                 <NavBar />
                 <Breadcrumbs />
                 <Switch>
@@ -22,7 +22,7 @@ function App() {
                     />
                     <Redirect to="/" />
                 </Switch>
-            </FavoriteProvider>
+            </PersonProvider>
         </div>
     );
 }

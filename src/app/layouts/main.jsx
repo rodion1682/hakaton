@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
-import userApi from "../api/user.api";
+import React from "react";
 import Loading from "../components/common/loading";
 import Footer from "../components/ui/footer";
-import UserCard from "../components/ui/userCard";
+import PersonCard from "../components/ui/personCard";
+import { usePerson } from "../hooks/usePerson";
 
 const Main = () => {
-    const [users, setUsers] = useState();
+    const { persons } = usePerson()
 
-    useEffect(() => {
-        userApi.fetchAll().then((data) => setUsers(data));
-    }, []);
-
-    if (users) {
+    if (persons) {
         return (
             <div className="h-100">
                 <div className="mb-2">
@@ -20,27 +16,28 @@ const Main = () => {
                     </h1>
                     <div className="container w-75 mt-3">
                         <h6 className="text-center fst-italic">
-                            Задачи современной фронтенд-разработки усложняются с
-                            каждым годом, что требует от разработчиков
-                            постоянной адаптации и освоения новых навыков. У
-                            членов нашей команды разные истории, но мы разделяем
-                            общую страсть к учению. Мы верим, что, чтобы стать
-                            хорошим разработчиком, нужно развиваться, поэтому мы
-                            постоянно ищем способы, как стать лучше в том, что
-                            мы делаем.
+                            The challenges of modern frontend development become
+                            more complex every year, requiring developers to
+                            constantly adapt and learn new skills. Our team
+                            members have different stories, but we share a
+                            common passion for learning. We believe that to be a
+                            good developer you need to evolve, so we are
+                            constantly looking for ways to become better at what
+                            we do.
                         </h6>
                     </div>
                 </div>
-                {users.map((user) => (
-                    <div key={user.id}>
+                {persons.map((person) => (
+                    <div key={person.id}>
                         <div className="container w-75 mt-3 shadow-sm p-3 mb-5 bg-light rounded position-relative">
-                            <UserCard name={user.name}
-                                      surname={user.surname}
-                                      image={user.image}
-                                      about={user.about}
-                                      role={user.role}
-                                      social={user.social}
-                                      id={user.id}
+                            <PersonCard
+                                name={person.name}
+                                surname={person.surname}
+                                image={person.image}
+                                about={person.about}
+                                role={person.role}
+                                social={person.social}
+                                id={person.id}
                             />
                         </div>
                     </div>

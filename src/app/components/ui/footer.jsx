@@ -1,12 +1,13 @@
 import React from "react";
 
 const Footer = () => {
+    const packageJson = require("../../../../package.json");
     return (
         <div className="text-center p-2 bg-light bg-dark text-white fs-6">
-            Hacaton React Team 3, 2023г.
-            <br />
-            Technologies: bootstrap 5.2.3, bootstrap-icons 1.10.5, react 18.2.0,
-            react-router-dom 5.3.4
+            Hackathon React Team 3, 2023
+            <br /> {`Technologies: bootstrap
+        ${packageJson.dependencies.bootstrap}, bootstrap-icons${packageJson.dependencies["bootstrap-icons"]}, react${packageJson.dependencies.react},
+            react-router-dom${packageJson.dependencies["react-router-dom"]}`}
         </div>
     );
 };
