@@ -4,7 +4,7 @@ import API from "../../api/user.api";
 import Loading from "../common/loading";
 import { useHistory } from "react-router";
 
-const PersonPage = ({ personId }) => {
+const PersonPage = ({ personId, backImg }) => {
     const [user, setUser] = useState();
     useEffect(() => {
         API.getById(+personId).then((data) => setUser(data));
@@ -23,12 +23,32 @@ const PersonPage = ({ personId }) => {
                         <div className="col col-lg-9 col-xl-7">
                             <div className="card">
                                 <div
-                                    className="rounded-top text-white d-flex flex-row"
+                                    className="rounded-top text-white d-flex flex-row position-relative"
                                     style={{
                                         backgroundColor: "#000",
                                         height: "200px"
                                     }}
                                 >
+                                    {backImg && (
+                                        <div
+                                            className="img-fluid position-absolute"
+                                            style={{
+                                                height: "200px",
+                                                width: "100%"
+                                            }}
+                                        >
+                                            <img
+                                                src={backImg}
+                                                alt="nothing"
+                                                className=""
+                                                style={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover"
+                                                }}
+                                            ></img>
+                                        </div>
+                                    )}
                                     <button
                                         className="position-absolute top-0 end-0 btn btn-dark btn-sm"
                                         onClick={handleClick}
@@ -59,12 +79,26 @@ const PersonPage = ({ personId }) => {
                                     </div>
                                     <div
                                         className="ms-3"
-                                        style={{ marginTop: "130px" }}
+                                        style={{
+                                            marginTop: "130px",
+                                            zIndex: 1,
+                                            textShadow: "0px 0px 5px 10px black"
+                                        }}
                                     >
-                                        <h5>
+                                        <h5
+                                            style={{
+                                                textShadow: "2px 2px 4px  black"
+                                            }}
+                                        >
                                             {user.name} {user.surname}
                                         </h5>
-                                        <p>New York</p>
+                                        <p
+                                            style={{
+                                                textShadow: "2px 2px 4px  black"
+                                            }}
+                                        >
+                                            New York
+                                        </p>
                                     </div>
                                 </div>
                                 <div
