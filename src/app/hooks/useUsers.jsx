@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import API from "../api/user.api";
+import Loading from "../components/common/loading";
 
 const FavoriteContext = React.createContext();
 
@@ -80,7 +81,7 @@ const FavoriteProvider = ({ children }) => {
         <FavoriteContext.Provider
             value={{ users, favoriteUsers, deleteFavorite, addFavorite }}
         >
-            {!isLoading ? children : "Loading..."}
+            {!isLoading ? children : <Loading />}
         </FavoriteContext.Provider>
     );
 };
