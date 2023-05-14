@@ -8,7 +8,6 @@ const PersonPage = ({ personId }) => {
     const [user, setUser] = useState();
     useEffect(() => {
         API.getById(+personId).then((data) => setUser(data));
-        console.log(user);
     }, [personId]);
 
     const history = useHistory();

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router";
 
@@ -6,6 +6,10 @@ const EditPage = ({ personId }) => {
     const [drag, setDrag] = useState(false);
     const [file, setFile] = useState();
     const hiddenFileInput = useRef();
+
+    useEffect(() => {
+        console.log(file);
+    }, [file]);
 
     const handleDragStart = (e) => {
         e.preventDefault();
