@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const ProgressBar = ({ currentMember, technology }) => {
     const memberTechnologies = currentMember.technologies;
+
     let technologyPercent = "";
     for (let tech in memberTechnologies) {
         if (tech === technology.id) {
@@ -17,14 +18,17 @@ const ProgressBar = ({ currentMember, technology }) => {
                         src={technology.image}
                         className="card-img-top mx-auto"
                         alt="..."
-                        style={{ width: "200px", height: "200px" }}
+                        style={{ width: "150px", height: "150px" }}
                     />
                     <div className="card-body">
                         <div className="progress">
                             <div
                                 className="progress-bar"
                                 role="progressbar"
-                                style={{ width: `${technologyPercent}%` }}
+                                style={{
+                                    width: `${technologyPercent}%`,
+                                    background: `linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1))`
+                                }}
                                 aria-valuenow={technologyPercent}
                                 aria-valuemin="0"
                                 aria-valuemax="100"

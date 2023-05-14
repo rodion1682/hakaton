@@ -12,8 +12,7 @@ function App() {
             <Switch>
                 <Route path="/" exact component={Main} />
                 <Route path="/favorite" component={Favorite} />
-                <Route path="/memberPage" component={MemberPage} />
-                <Route path="/memberPage/:memberId" component={MemberPage} />
+                <Route path="/memberPage/:memberId?" component={MemberPage} />
                 <Redirect to="/" />
             </Switch>
         </div>

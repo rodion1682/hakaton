@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const BadgeRole = ({ role }) => {
-    const roleStyle = role === "danger" ? "Тимлид" : "Разработчик";
+    const roleStyle = role === "info" ? "Тимлид" : "Разработчик";
     return (
         <div>
             <span className={`badge rounded-pill bg-${role}`}>{roleStyle}</span>

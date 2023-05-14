@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ color, calledFunction, name, type }) => {
-    const buttonStyle = type === "rounded" ? " rounded-pill" : "";
+const Button = ({ color, calledFunction, name, type, buttonStyle }) => {
+    const buttonRound = type === "rounded" ? " rounded-pill" : "";
     return (
         <div>
             <button
                 type="button"
-                className={`btn btn-${color}${buttonStyle}`}
+                className={`${buttonStyle} btn btn-outline-${color}${buttonRound}`}
                 onClick={calledFunction}
             >
                 {name}
@@ -17,7 +17,7 @@ const Button = ({ color, calledFunction, name, type }) => {
 };
 
 Button.defaultProps = {
-    color: "primary",
+    color: "secondary",
     type: "rounded"
 };
 
@@ -25,7 +25,8 @@ Button.propTypes = {
     color: PropTypes.string,
     calledFunction: PropTypes.func,
     name: PropTypes.string.isRequired,
-    type: PropTypes.string
+    type: PropTypes.string,
+    textStyle: PropTypes.string
 };
 
 export default Button;
