@@ -56,7 +56,7 @@ const Main = () => {
                                     <UserCardInfo user={user} />
                                 </div>
                             </div>
-                            <SocialFooter />
+                            <SocialFooter social={user.social} />
                         </div>
                     </div>
                 ))}

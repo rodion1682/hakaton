@@ -6,16 +6,24 @@ const users = [
         age: 20,
         technologies: {
             "9D7F1B4E2C": "90",
-            "A3C5E2B8F1": "90",
+            A3C5E2B8F1: "90",
             "5G8H9J2K4L": "80",
-            "M1N8B7V2C5": "70",
-            "P9O6I4U3Y2": "10",
+            M1N8B7V2C5: "70",
+            P9O6I4U3Y2: "10",
             "7T6R5E4W3Q": "20"
         },
         role: "info",
         image: "https://www.w3schools.com/howto/img_avatar.png",
         about: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: true
+        favorite: true,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 1,
@@ -24,16 +32,24 @@ const users = [
         age: 20,
         technologies: {
             "9D7F1B4E2C": "90",
-            "A3C5E2B8F1": "90",
+            A3C5E2B8F1: "90",
             "5G8H9J2K4L": "80",
-            "M1N8B7V2C5": "70",
-            "P9O6I4U3Y2": "10",
+            M1N8B7V2C5: "70",
+            P9O6I4U3Y2: "10",
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
         about: "1 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: false
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 2,
@@ -42,16 +58,24 @@ const users = [
         age: 20,
         technologies: {
             "9D7F1B4E2C": "90",
-            "A3C5E2B8F1": "90",
+            A3C5E2B8F1: "90",
             "5G8H9J2K4L": "80",
-            "M1N8B7V2C5": "70",
-            "P9O6I4U3Y2": "10",
+            M1N8B7V2C5: "70",
+            P9O6I4U3Y2: "10",
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
         about: "2 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: false
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 3,
@@ -60,16 +84,24 @@ const users = [
         age: 20,
         technologies: {
             "9D7F1B4E2C": "90",
-            "A3C5E2B8F1": "90",
+            A3C5E2B8F1: "90",
             "5G8H9J2K4L": "80",
-            "M1N8B7V2C5": "70",
-            "P9O6I4U3Y2": "10",
+            M1N8B7V2C5: "70",
+            P9O6I4U3Y2: "10",
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
         about: "3 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: false
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 4,
@@ -78,16 +110,24 @@ const users = [
         age: 20,
         technologies: {
             "9D7F1B4E2C": "90",
-            "A3C5E2B8F1": "90",
+            A3C5E2B8F1: "90",
             "5G8H9J2K4L": "80",
-            "M1N8B7V2C5": "70",
-            "P9O6I4U3Y2": "10",
+            M1N8B7V2C5: "70",
+            P9O6I4U3Y2: "10",
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
         image: "https://www.w3schools.com/howto/img_avatar.png",
         about: "4 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: true
+        favorite: true,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     }
 ];
 
@@ -121,7 +161,7 @@ const technologies = [
         id: "7T6R5E4W3Q",
         title: "Redux",
         image: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Cib-redux_%28CoreUI_Icons_v1.0.0%29.svg"
-    },
+    }
 ];
 
 if (!localStorage.getItem("users")) {
