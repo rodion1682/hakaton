@@ -2,14 +2,19 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import API from "../../api/user.api";
 import Loading from "../common/loading";
+import { useHistory } from "react-router";
 
-const PersonPage = ({}) => {
-    //userId
+const PersonPage = ({ personId }) => {
     const [user, setUser] = useState();
+    useEffect(() => {
+        API.getById(+personId).then((data) => setUser(data));
+        console.log(user);
+    }, [personId]);
 
-    API.fetchAll().then((users) => {
-        setUser(users[0]);
-    });
+    const history = useHistory();
+    const handleClick = () => {
+        history.push(history.location.pathname + "/edit");
+    };
 
     if (user) {
         return (
@@ -25,6 +30,12 @@ const PersonPage = ({}) => {
                                         height: "200px"
                                     }}
                                 >
+                                    <button
+                                        className="position-absolute top-0 end-0 btn btn-dark btn-sm"
+                                        onClick={handleClick}
+                                    >
+                                        <i className="bi bi-gear"></i>
+                                    </button>
                                     <div
                                         className="ms-4 mt-5 d-flex flex-column"
                                         style={{ width: "150px" }}
@@ -142,8 +153,8 @@ const PersonPage = ({}) => {
         return <Loading />;
     }
 };
-//PersonPage.propTypes = {
-//    userId: PropTypes.number.isRequired
-//};
+PersonPage.propTypes = {
+    personId: PropTypes.string.isRequired
+};
 
 export default PersonPage;

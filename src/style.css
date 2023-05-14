@@ -52,3 +52,21 @@
         transform: rotate(360deg);
     }
 }
+
+.fileArea {
+    height: 300px;
+    width: 600px;
+    background-color: #eeeeee;
+    border: 6px inset rgba(166, 193, 238, 1);
+    border-radius: 25px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+.fileArea.hover {
+    border-style: dashed;
+}
