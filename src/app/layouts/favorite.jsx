@@ -1,20 +1,20 @@
 import React from "react";
 import Loading from "../components/common/loading";
-import UserCard from "../components/ui/userCard";
+import PersonCard from "../components/ui/personCard";
 import Button from "../components/common/button";
-import { useUsers } from "../hooks/useUsers";
+import { usePerson } from "../hooks/usePerson";
 import { useHistory } from "react-router-dom";
 
 const Favorite = () => {
     const history = useHistory();
-    const { favoriteUsers, deleteFavorite } = useUsers();
+    const { favoritePersons, deleteFavorite } = usePerson();
     const handleDelete = (id) => () => {
         deleteFavorite({ id });
     };
     const backToMainPage = () => {
         history.push("/");
     };
-    if (favoriteUsers) {
+    if (favoritePersons) {
         return (
             <div className="h-100">
                 <div className="mb-2">
@@ -22,21 +22,21 @@ const Favorite = () => {
                         YOUR SELECTED MEMBERS
                     </h1>
                     <div>
-                        {favoriteUsers.length > 0 ? (
-                            favoriteUsers.map((favUser) => (
-                                <div key={favUser.id}>
+                        {favoritePersons.length > 0 ? (
+                            favoritePersons.map((favPerson) => (
+                                <div key={favPerson.id}>
                                     <div className="container w-75 mt-3 shadow-sm p-3 mb-5 bg-light rounded position-relative">
-                                        <UserCard
-                                            name={favUser.name}
-                                            surname={favUser.surname}
-                                            image={favUser.image}
+                                        <PersonCard
+                                            name={favPerson.name}
+                                            surname={favPerson.surname}
+                                            image={favPerson.image}
                                             imageWidth="90"
-                                            id={favUser.id}
+                                            id={favPerson.id}
                                         />
                                         <Button
                                             color={"danger"}
                                             calledFunction={handleDelete(
-                                                favUser.id
+                                                favPerson.id
                                             )}
                                             name={"Delete"}
                                             buttonStyle="position-absolute bottom-0 end-0 m-3"

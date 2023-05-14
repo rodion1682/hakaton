@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useUsers } from "../../hooks/useUsers";
+import { usePerson } from "../../hooks/usePerson";
 
 const NavBar = () => {
-    const { favoriteUsers } = useUsers();
-    const favoriteUsersCount = favoriteUsers.length;
+    const { favoritePersons } = usePerson();
+    const favoritePersonsCount = favoritePersons.length;
 
     return (
         <nav className="navbar navbar-expand-lg bg-dark">
@@ -17,7 +17,7 @@ const NavBar = () => {
                     </li>
                     <li>
                         <Link className="nav-link text-white" to="/favorite">
-                            Favorites: <span>{favoriteUsersCount}</span>
+                            Favorites: <span>{favoritePersonsCount}</span>
                         </Link>
                     </li>
                 </ul>

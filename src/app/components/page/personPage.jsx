@@ -1,47 +1,46 @@
 import React, { useEffect, useState } from "react";
-import API from "../../api/user.api";
+import API from "../../api/person.api";
 import Loading from "../common/loading";
 import ProgressBar from "../common/progressBar";
 import { useParams, useHistory } from "react-router-dom";
-import { useUsers } from "../../hooks/useUsers";
+import { usePerson } from "../../hooks/usePerson";
 import SocialFooter from "../ui/socialFooter";
 import Slider from "../ui/slider";
+import PropTypes from "prop-types";
 
 const PersonPage = ({ backImg }) => {
     const { personId } = useParams();
     const id = Number(personId);
-    const [user, setUser] = useState();
+    const [person, setPerson] = useState();
     const [favorite, setFavorite] = useState(false);
-    const { addFavorite, deleteFavorite } = useUsers();
+    const { addFavorite, deleteFavorite } = usePerson();
     const localStorageTechnologies = localStorage.getItem("technologies");
     const technologies = JSON.parse(localStorageTechnologies);
 
     useEffect(() => {
-        API.fetchAll().then((users) => {
-            setUser(users[id]);
-            setFavorite(users[id].favorite);
+        API.fetchAll().then((persons) => {
+            setPerson(persons[id]);
+            setFavorite(persons[id].favorite);
         });
     }, []);
 
     const handleFavorite = (id, favoriteStatus) => () => {
-        console.log(favoriteStatus);
         if (!favoriteStatus) {
             addFavorite({ id });
         } else {
             deleteFavorite({ id });
         }
         setFavorite(!favoriteStatus);
-        setUser((prevUser) => ({ ...prevUser, favorite: !favoriteStatus }));
+        setPerson((prevPerson) => ({ ...prevPerson, favorite: !favoriteStatus }));
     };
 
     const history = useHistory();
     const handleClick = () => {
         history.push(history.location.pathname + "/edit");
     };
-
     const colorOfStar = favorite === true ? "-fill" : "";
 
-    if (user) {
+    if (person) {
         return (
             <section className="h-100">
                 <div className="container py-5 h-100">
@@ -86,7 +85,7 @@ const PersonPage = ({ backImg }) => {
                                         style={{ width: "150px" }}
                                     >
                                         <img
-                                            src={user.image}
+                                            src={person.image}
                                             alt="Generic placeholder"
                                             className="img-fluid img-thumbnail mt-4 mb-2"
                                             style={{
@@ -101,7 +100,7 @@ const PersonPage = ({ backImg }) => {
                                             style={{ zIndex: 1 }}
                                             onClick={handleFavorite(
                                                 id,
-                                                user.favorite
+                                                person.favorite
                                             )}
                                         >
                                             To favorite
@@ -119,7 +118,7 @@ const PersonPage = ({ backImg }) => {
                                         }}
                                     >
                                         <h4>
-                                            {user.name} {user.surname}
+                                            {person.name} {person.surname}
                                         </h4>
                                     </div>
                                 </div>
@@ -128,7 +127,7 @@ const PersonPage = ({ backImg }) => {
                                     style={{ backgroundColor: "#f8f9fa" }}
                                 >
                                     <div className="d-flex justify-content-end text-center py-1">
-                                        <SocialFooter social={user.social} />
+                                        <SocialFooter social={person.social} />
                                     </div>
                                 </div>
                                 <div className="card-body p-4 text-black">
@@ -143,7 +142,7 @@ const PersonPage = ({ backImg }) => {
                                             }}
                                         >
                                             <p className="font-italic mb-1">
-                                                {user.about}
+                                                {person.about}
                                             </p>
                                         </div>
                                     </div>
@@ -157,7 +156,7 @@ const PersonPage = ({ backImg }) => {
                                             (tech) => (
                                                 <ProgressBar
                                                     key={tech.id}
-                                                    currentMember={user}
+                                                    currentMember={person}
                                                     technology={tech}
                                                 />
                                             )
@@ -174,5 +173,9 @@ const PersonPage = ({ backImg }) => {
         return <Loading />;
     }
 };
+
+PersonPage.propTypes = {
+    backImg: PropTypes.string
+}
 
 export default PersonPage;

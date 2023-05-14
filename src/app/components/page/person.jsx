@@ -1,27 +1,3 @@
-//import React from "react";
-//import Loading from "../common/loading";
-//import { useParams } from "react-router";
-//import PersonPage from "./personPage";
-//import EditPage from "./editPage";
-
-//const Person = () => {
-//    const { personId, edit } = useParams();
-//    return (
-//        <>
-//            {personId ? (
-//                edit ? (
-//                    <EditPage personId={personId} />
-//                ) : (
-//                    <PersonPage personId={personId} />
-//                )
-//            ) : (
-//                <Loading />
-//            )}
-//        </>
-//    );
-//};
-
-//export default Person;
 import React, { useState } from "react";
 import Loading from "../common/loading";
 import { useParams } from "react-router";

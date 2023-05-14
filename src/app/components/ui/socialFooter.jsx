@@ -25,7 +25,7 @@ const SocialFooter = ({ social }) => {
 };
 
 SocialFooter.propTypes = {
-    user: PropTypes.object
+    social: PropTypes.array
 };
 
 export default SocialFooter;

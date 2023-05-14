@@ -1,4 +1,4 @@
-const users = [
+const persons = [
     {
         id: 0,
         name: "Name",
@@ -13,9 +13,17 @@ const users = [
             "7T6R5E4W3Q": "20"
         },
         role: "info",
-        image: "https://www.w3schools.com/howto/img_avatar.png",
+        image: "https://avatars.dicebear.com/api/avataaars/" + (Math.random() + 1).toString(36).substring(7) + ".svg",
         about: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: true
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 1,
@@ -31,9 +39,17 @@ const users = [
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
-        image: "https://www.w3schools.com/howto/img_avatar.png",
+        image: "https://avatars.dicebear.com/api/avataaars/" + (Math.random() + 1).toString(36).substring(7) + ".svg",
         about: "1 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: false
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 2,
@@ -49,9 +65,17 @@ const users = [
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
-        image: "https://www.w3schools.com/howto/img_avatar.png",
+        image: "https://avatars.dicebear.com/api/avataaars/" + (Math.random() + 1).toString(36).substring(7) + ".svg",
         about: "2 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: false
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 3,
@@ -67,9 +91,17 @@ const users = [
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
-        image: "https://www.w3schools.com/howto/img_avatar.png",
+        image: "https://avatars.dicebear.com/api/avataaars/" + (Math.random() + 1).toString(36).substring(7) + ".svg",
         about: "3 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: false
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     },
     {
         id: 4,
@@ -85,9 +117,17 @@ const users = [
             "7T6R5E4W3Q": "20"
         },
         role: "secondary",
-        image: "https://www.w3schools.com/howto/img_avatar.png",
+        image: "https://avatars.dicebear.com/api/avataaars/" + (Math.random() + 1).toString(36).substring(7) + ".svg",
         about: "4 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti delectus magnam beatae, distinctio mollitia cum sunt illum quae neque veritatis voluptatibus officiis dignissimos ipsum nobis ullam natus est ratione exercitationem?",
-        favorite: true
+        favorite: false,
+        social: [
+            {
+                name: "instagram",
+                url: "https://www.instagram.com/"
+            },
+            { name: "telegram", url: "https://t.me/" },
+            { name: "twitter", url: "https://twitter.com/" }
+        ]
     }
 ];
 
@@ -121,11 +161,11 @@ const technologies = [
         id: "7T6R5E4W3Q",
         title: "Redux",
         image: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Cib-redux_%28CoreUI_Icons_v1.0.0%29.svg"
-    },
+    }
 ];
 
-if (!localStorage.getItem("users")) {
-    localStorage.setItem("users", JSON.stringify(users));
+if (!localStorage.getItem("persons")) {
+    localStorage.setItem("persons", JSON.stringify(persons));
 }
 
 if (!localStorage.getItem("technologies")) {
@@ -135,29 +175,28 @@ if (!localStorage.getItem("technologies")) {
 const fetchAll = () =>
     new Promise((resolve) => {
         window.setTimeout(function () {
-            resolve(JSON.parse(localStorage.getItem("users")));
-        }, 2000);
+            resolve(JSON.parse(localStorage.getItem("persons")));
+        }, 500);
     });
-
-//const getById = (id) =>
-//    new Promise((resolve) => {
-//        window.setTimeout(function () {
-//            resolve(
-//                JSON.parse(localStorage.getItem("users")).find(
-//                    (user) => user._id === id
-//                )
-//            );
-//        }, 1000);
-//    });
 
 const getById = (id) =>
     new Promise((resolve) => {
         window.setTimeout(function () {
-            resolve(users.find((user) => user.id === id));
-        }, 1000);
+            resolve(persons.find((person) => person.id === id));
+        }, 500);
+    });
+
+const update = (id, data) =>
+    new Promise((resolve) => {
+        const persons = JSON.parse(localStorage.getItem("persons"));
+        const personIndex = persons.findIndex((u) => u.id === id);
+        persons[personIndex] = { ...persons[personIndex], ...data };
+        localStorage.setItem("persons", JSON.stringify(persons));
+        resolve(persons[personIndex]);
     });
 
 export default {
     fetchAll,
-    getById
+    getById,
+    update
 };

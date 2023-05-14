@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
-import userApi from "../api/user.api";
+import React from "react";
 import Loading from "../components/common/loading";
 import Footer from "../components/ui/footer";
-import UserCard from "../components/ui/userCard";
+import PersonCard from "../components/ui/personCard";
+import { usePerson } from "../hooks/usePerson";
 
 const Main = () => {
-    const [users, setUsers] = useState();
+    const { persons } = usePerson()
 
-    useEffect(() => {
-        userApi.fetchAll().then((data) => setUsers(data));
-    }, []);
-
-    if (users) {
+    if (persons) {
         return (
             <div className="h-100">
                 <div className="mb-2">
@@ -31,17 +27,17 @@ const Main = () => {
                         </h6>
                     </div>
                 </div>
-                {users.map((user) => (
-                    <div key={user.id}>
+                {persons.map((person) => (
+                    <div key={person.id}>
                         <div className="container w-75 mt-3 shadow-sm p-3 mb-5 bg-light rounded position-relative">
-                            <UserCard
-                                name={user.name}
-                                surname={user.surname}
-                                image={user.image}
-                                about={user.about}
-                                role={user.role}
-                                social={user.social}
-                                id={user.id}
+                            <PersonCard
+                                name={person.name}
+                                surname={person.surname}
+                                image={person.image}
+                                about={person.about}
+                                role={person.role}
+                                social={person.social}
+                                id={person.id}
                             />
                         </div>
                     </div>
